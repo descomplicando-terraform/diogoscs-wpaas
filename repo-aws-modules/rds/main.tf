@@ -25,12 +25,6 @@ module "rds" {
   allow_major_version_upgrade = var.allow_major_version_upgrade
   auto_minor_version_upgrade  = var.auto_minor_version_upgrade
 
-  # Enhanced Monitoring - see example for details on how to create the role
-  # by yourself, in case you don't want to create it automatically
-  monitoring_interval    = "30"
-  monitoring_role_name   = "MyRDSMonitoringRole"
-  create_monitoring_role = true
-
   # Database Deletion Protection
   deletion_protection = var.deletion_protection
 
