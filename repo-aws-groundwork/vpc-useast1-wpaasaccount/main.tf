@@ -21,6 +21,8 @@ module "vpc_useast1_wpaasaccount" {
   enable_nat_gateway = true
   single_nat_gateway = true
 
+  create_database_subnet_group = false
+
   tags = {
     git-hub-repo = "repo-aws-modules"
     managed-by   = "terraform"
