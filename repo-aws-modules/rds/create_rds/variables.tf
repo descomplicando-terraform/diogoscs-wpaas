@@ -170,3 +170,9 @@ variable "maintenance_window" {
   type        = string
   default     = null
 }
+
+variable "allocated_storage" {
+  description = "The allocated storage in gigabytes"
+  type        = number
+  default     = null
+}
