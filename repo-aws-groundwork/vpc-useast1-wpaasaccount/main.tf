@@ -13,13 +13,13 @@ module "vpc_useast1_wpaasaccount" {
   azs  = slice(data.aws_availability_zones.available.names, 0, 3)
 
   public_subnets      = ["10.1.10.0/24", "10.1.12.0/24", "10.1.14.0/24", "10.1.20.0/24", "10.1.22.0/24", "10.1.24.0/24"]
-  public_subnet_names = ["PRD-PUBL-A", "PRD-PUBL-B", "PRD-PUBL-C", "DEV-PUBL-A", "DEV-PUBL-B", "DEV-PUBL-C"]
+  public_subnet_names = ["PRD-PUBL-A", "PRD-PUBL-B", "PRD-PUBL-C", "DEV-PUBL-A", "DEV-PUBL-B"]
 
   private_subnets      = ["10.1.11.0/24", "10.1.13.0/24", "10.1.15.0/24", "10.1.21.0/24", "10.1.23.0/24", "10.1.25.0/24"]
   private_subnet_names = ["PRD-PRIV-A", "PRD-PRIV-B", "PRD-PRIV-C", "DEV-PRIV-A", "DEV-PRIV-B", "DEV-PRIV-C"]
 
-  enable_nat_gateway = true
-  single_nat_gateway = true
+  enable_nat_gateway = false
+  single_nat_gateway = false
 
   create_database_subnet_group = false
 
