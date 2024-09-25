@@ -1,53 +1,28 @@
 variable "name" {
-  description = "Name to be used on all the resources as identifier"
+  description = ""
   type        = string
-  default     = ""
 }
 
-variable "public_subnets" {
-  description = "A list of public subnets inside the VPC"
-  type        = list(string)
-  default     = []
-}
-
-variable "public_subnet_names" {
-  description = "Explicit values to use in the Name tag on public subnets. If empty, Name tags are generated"
-  type        = list(string)
-  default     = []
-}
-
-variable "public_subnet_tags" {
-  description = "Additional tags for the public subnets"
-  type        = map(string)
-  default     = {}
-}
-
-variable "cidr" {
+variable "cidr_block" {
   description = "(Optional) The IPv4 CIDR block for the VPC. CIDR can be explicitly set or it can be derived from IPAM using `ipv4_netmask_length` & `ipv4_ipam_pool_id`"
   type        = string
   default     = "10.0.0.0/16"
 }
 
-variable "private_subnets" {
-  description = "A list of private subnets inside the VPC"
-  type        = list(string)
-  default     = []
+variable "enable_dns_support" {
+  description = "(Optional) The IPv4 CIDR block for the VPC. CIDR can be explicitly set or it can be derived from IPAM using `ipv4_netmask_length` & `ipv4_ipam_pool_id`"
+  type        = bool
+  default     = true
 }
 
-variable "private_subnet_names" {
-  description = "Explicit values to use in the Name tag on private subnets. If empty, Name tags are generated"
-  type        = list(string)
-  default     = []
-}
-
-variable "private_subnet_tags" {
-  description = "Additional tags for the private subnets"
-  type        = map(string)
-  default     = {}
+variable "enable_dns_hostnames" {
+  description = "(Optional) The IPv4 CIDR block for the VPC. CIDR can be explicitly set or it can be derived from IPAM using `ipv4_netmask_length` & `ipv4_ipam_pool_id`"
+  type        = bool
+  default     = true
 }
 
 variable "tags" {
-  description = "A map of tags to add to all resources"
+  description = "A mapping of tags to assign to the resource"
   type        = map(string)
   default     = {}
 }
@@ -58,44 +33,98 @@ variable "azs" {
   default     = []
 }
 
-variable "enable_nat_gateway" {
-  description = "Should be true if you want to provision NAT Gateways for each of your private networks"
-  type        = bool
-  default     = false
+variable "prd_public_subnets" {
+  description = "A list of public subnets inside the VPC"
+  type        = list(string)
+  default     = []
 }
 
-variable "single_nat_gateway" {
-  description = "Should be true if you want to provision a single shared NAT Gateway across all of your private networks"
-  type        = bool
-  default     = false
+variable "prd_public_subnets_names" {
+  description = "Explicit values to use in the Name tag on public subnets. If empty, Name tags are generated"
+  type        = list(string)
+  default     = []
 }
 
-variable "enable_dns_hostnames" {
-  description = "Should be true to enable DNS hostnames in the VPC"
-  type        = bool
-  default     = true
+variable "prd_private_subnets" {
+  description = "A list of public subnets inside the VPC"
+  type        = list(string)
+  default     = []
 }
 
-variable "enable_dns_support" {
-  description = "Should be true to enable DNS support in the VPC"
-  type        = bool
-  default     = true
+variable "prd_private_subnets_names" {
+  description = "Explicit values to use in the Name tag on public subnets. If empty, Name tags are generated"
+  type        = list(string)
+  default     = []
 }
 
-variable "create_database_subnet_group" {
-  description = "Controls if database subnet group should be created (n.b. database_subnets must also be set)"
-  type        = bool
-  default     = true
-}
-
-variable "database_subnet_group_name" {
-  description = "Name of database subnet group"
+variable "prd_public_subnets_suffix" {
+  description = "Suffix to append to public subnets name"
   type        = string
-  default     = null
+  default     = "prd-public"
 }
 
-variable "database_subnet_group_tags" {
-  description = "Additional tags for the database subnet group"
-  type        = map(string)
-  default     = {}
+variable "prd_private_subnets_suffix" {
+  description = "Suffix to append to public subnets name"
+  type        = string
+  default     = "prd-private"
+}
+
+variable "dev_public_subnets" {
+  description = "A list of public subnets inside the VPC"
+  type        = list(string)
+  default     = []
+}
+
+variable "dev_public_subnets_names" {
+  description = "Explicit values to use in the Name tag on public subnets. If empty, Name tags are generated"
+  type        = list(string)
+  default     = []
+}
+
+variable "dev_private_subnets" {
+  description = "A list of public subnets inside the VPC"
+  type        = list(string)
+  default     = []
+}
+
+variable "dev_private_subnets_names" {
+  description = "Explicit values to use in the Name tag on public subnets. If empty, Name tags are generated"
+  type        = list(string)
+  default     = []
+}
+
+variable "dev_public_subnets_suffix" {
+  description = "Suffix to append to public subnets name"
+  type        = string
+  default     = "dev-public"
+}
+
+variable "dev_private_subnets_suffix" {
+  description = "Suffix to append to public subnets name"
+  type        = string
+  default     = "dev-private"
+}
+
+variable "create_prd_private_dbsubnet_group" {
+  type        = bool
+  description = ""
+  default = true
+}
+
+variable "create_dev_private_dbsubnet_group" {
+  type        = bool
+  description = ""
+  default = true
+}
+
+variable "env_prd" {
+  type        = string
+  description = ""
+  default = "prd"
+}
+
+variable "env_dev" {
+  type        = string
+  description = ""
+  default = "dev"
 }
